@@ -1,0 +1,47 @@
+<html>
+   <head>
+   <title>User-defined objects</title>
+   
+      <script type="text/javascript">
+         // Define a function which will work as a method
+         function addPrice(amount){
+            this.price = amount; 
+         }
+         function addDate(date){
+             this.date = date;
+         }
+         
+         function book(title, author){
+            this.title = title;
+            this.author  = author;
+            this.addPrice = addPrice; // Assign that method as property.
+            this.addDate = addDate;
+         }
+         function addEngine(name_engine){
+             this.engine=name_engine;
+         }
+        function car(name_car){
+            this.name=name_car;
+            this.addEngine= addEngine;
+        }
+      </script>
+      
+   </head>
+   <body>
+   
+      <script type="text/javascript">
+         var myBook = new book("Perl", "Mohtashim");
+         var myCar = new car("BMW");
+         myCar.addEngine("My Engine");
+         myBook.addPrice(20000);
+         myBook.addDate(2016);
+         document.write("Book title is : " + myBook.title + "<br>");
+         document.write("Book author is : " + myBook.author + "<br>");
+         document.write("Book price is : " + myBook.price + "<br>");
+         document.write("Book date is : " + myBook.date + "<br>");
+         document.write("My car name is : "+myCar.name + "<br>");
+         document.write("My car engine is : "+myCar.engine + "<br>");
+      </script>
+      
+   </body>
+</html>
