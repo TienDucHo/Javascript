@@ -25,6 +25,21 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	<script>
+	function loadDoc() {
+		var mb = document.getElementById("mabai").value;
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				document.getElementById("noidungdebai").src = xhttp.responseText;
+			}
+	  }
+	  if (mb != ""){
+		xhttp.open("GET", "http://gps.xamarinvietnam.com/a.txt", true);
+		xhttp.send();
+	  }
+	}
+	</script>
 </head>
 
 <body>
@@ -62,9 +77,9 @@
                 <p class="lead">Search Here</p>
                 <div class="list-group">
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="Search for...">
+					  <input type="text" class="form-control" placeholder="Search for..." id="mabai">
 					  <span class="input-group-btn">
-						<button class="btn btn-default" type="button" id="btnsearch">Go!</button>
+						<button class="btn btn-default" type="button" id="btnsearch" onclick="loadDoc()" >Go!</button>
 					  </span>
 					</div><!-- /input-group -->
                 </div>
