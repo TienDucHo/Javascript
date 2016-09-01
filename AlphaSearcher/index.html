@@ -31,11 +31,34 @@
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				document.getElementById("noidungdebai").src = xhttp.responseText;
+				if (xhttp.responseText!="0") {
+				document.getElementById("noidungdebai").href = xhttp.responseText;
+				document.getElementById("noidungdebai").innerHTML = xhttp.responseText;
+				document.getElementById("tieude").innerHTML =mb;
+				}
+				else alert("Khong tim thay ma bai");
+			}
+			
+	  }
+	  if (mb != ""){
+		xhttp.open("GET", "laydebai.php?mabai="+mb, true);
+		xhttp.send();
+	  }
+	}
+	function loadSample(){
+	var mb = document.getElementById("mabai").value;
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				if (xhttp.responseText!="0") {
+				document.getElementById("noidungsamplecode").href = xhttp.responseText;
+				document.getElementById("noidungsamplecode").innerHTML = xhttp.responseText;
+				}
+				else alert("Khong tim thay ma bai");
 			}
 	  }
 	  if (mb != ""){
-		xhttp.open("GET", "http://gps.xamarinvietnam.com/a.txt", true);
+		xhttp.open("GET", "laysamplecode.php?mabai="+mb, true);
 		xhttp.send();
 	  }
 	}
@@ -89,16 +112,19 @@
 
                 <div class="thumbnail">
                     <div class="caption-full">
-                        <h4>Tieu de de o day
-                        </h4>
-						<iframe src="http://www.w3schools.com" id="noidungdebai"></iframe>
+                        <p id="tieude"> 
+						</p>
+						<br>
+						Day la de bai <a href ="" id="noidungdebai"> </a>
+						<br>
+						Sample Code <a href ="" id="noidungsamplecode"> </a>
                     </div>
                 </div>
 
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success" id="btnSample">See Sample Code</a>
+                        <a class="btn btn-success" onclick ="loadSample()" id="btnSample">See Sample Code</a>
                     </div>
  
                     <hr>
